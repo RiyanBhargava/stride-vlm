@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: 'COVE: Coverage-Verified Semantic Token Routing for Frozen VLMs'
+message: 'Please cite the paper and the exact release commit.'
+type: software
+authors:
+  - name: 'COVE contributors'
+version: 0.2.0
+date-released: 2026-08-13
+license: Apache-2.0

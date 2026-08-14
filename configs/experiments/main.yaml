@@ -1,0 +1,14 @@
+models: [llava15-7b]
+benchmarks: [pope, textvqa, scienceqa, gqa]
+methods: [dense, random, divprune, otprune, vispruner, visionzip, stride]
+random_seeds: [0, 1, 2]
+budgets: [64, 128]
+dense_budgets:
+  llava15-7b: 576
+max_samples: 200
+max_new_tokens: 12
+warmup_samples: 1
+load_in_4bit: true
+router_config: configs/router/stride.yaml
+data_root: data_final
+output_root: results/main

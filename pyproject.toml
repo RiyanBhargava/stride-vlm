@@ -1,0 +1,52 @@
+[build-system]
+requires = ['setuptools>=69', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'stride-vlm'
+version = '0.3.0'
+description = 'STRIDE: training-free semantic residual routing for frozen VLMs'
+readme = 'README.md'
+requires-python = '>=3.10'
+license = {text = 'Apache-2.0'}
+authors = [{name = 'STRIDE contributors'}]
+dependencies = [
+  'numpy>=1.24',
+  'PyYAML>=6.0',
+  'torch>=2.1',
+  'tqdm>=4.66',
+  'Pillow>=10.0',
+]
+
+[project.optional-dependencies]
+vlm = [
+  'accelerate>=0.30',
+  'transformers>=4.49,<4.58',
+  'sentencepiece>=0.2',
+  'safetensors>=0.4',
+]
+quant = ['bitsandbytes>=0.43']
+eval = [
+  'datasets>=2.19',
+  'scipy>=1.11',
+  'pandas>=2.0',
+  'matplotlib>=3.8',
+  'seaborn>=0.13',
+]
+dev = ['pytest>=8', 'pytest-cov>=5', 'ruff>=0.5']
+all = ['stride-vlm[vlm,eval,dev,quant]']
+
+[project.scripts]
+stride = 'stride.cli:main'
+
+[tool.setuptools.packages.find]
+where = ['src']
+
+[tool.pytest.ini_options]
+testpaths = ['tests']
+addopts = '-q'
+pythonpath = ['src']
+
+[tool.ruff]
+line-length = 100
+target-version = 'py310'
