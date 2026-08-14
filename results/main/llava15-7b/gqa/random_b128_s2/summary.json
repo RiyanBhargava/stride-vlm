@@ -1,0 +1,50 @@
+{
+  "dataset": "data_final\\gqa\\samples.jsonl",
+  "method": "random",
+  "budget": 128,
+  "seed": 2,
+  "samples": 200,
+  "score": 0.68,
+  "mean_prefill_seconds": 0.05842801200001759,
+  "mean_generation_seconds": 0.18592947699999968,
+  "mean_preprocessing_seconds": 0.012438640000000304,
+  "mean_vision_seconds": 0.044519754499997365,
+  "mean_routing_seconds": 0.000910175000021809,
+  "mean_packing_seconds": 0.000559442499998113,
+  "mean_total_seconds": 0.24487900100000842,
+  "mean_peak_memory_bytes": 4272680934.4,
+  "environment": {
+    "created_unix": 1786689388.3274167,
+    "git_commit": "45f74ec01cc4d63f38f26a5319605af196e95e21",
+    "git_dirty": true,
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5080",
+    "cuda_visible_devices": null
+  },
+  "router_config": {
+    "method": "stride",
+    "budget": 128,
+    "vispruner_important_ratio": 0.5,
+    "visionzip_context_tokens": 30,
+    "otprune_gamma": 0.01,
+    "stride_concept_contrast_min": 1.0,
+    "stride_semantic_anchor_fraction": 0.0625,
+    "stride_semantic_gain_min": 0.15,
+    "stride_residual_ridge": 0.1,
+    "stride_use_semantics": true,
+    "stride_use_modality_calibration": true,
+    "stride_use_residual_space": true,
+    "stride_use_projected_geometry": true,
+    "stride_use_vision_space": true,
+    "stride_use_intent_routing": true,
+    "stride_use_diversity_expert": true,
+    "seed": 2
+  },
+  "generation_kwargs": {
+    "max_new_tokens": 12
+  },
+  "evaluation_version": "evalai-vqa-v1"
+}

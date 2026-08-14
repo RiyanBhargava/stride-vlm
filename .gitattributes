@@ -1,0 +1,3 @@
+results/**/*.jsonl linguist-generated=true
+results/**/*.csv linguist-generated=true
+results/**/*.tex linguist-generated=true

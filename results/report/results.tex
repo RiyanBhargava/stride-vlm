@@ -1,0 +1,58 @@
+\begin{tabular}{lllrrrr}
+\toprule
+Model & Dataset & Method & Budget & Score $\uparrow$ & Total latency (s) $\downarrow$ & $N$ \\
+\midrule
+llava15-7b & gqa & dense & 576 & 75.50 $\pm$ 6.00 & 0.350 & 200 \\
+llava15-7b & gqa & divprune & 64 & 64.00 $\pm$ 6.75 & 0.255 & 200 \\
+llava15-7b & gqa & divprune & 128 & 68.50 $\pm$ 6.50 & 0.307 & 200 \\
+llava15-7b & gqa & otprune & 64 & \textbf{68.00 $\pm$ 6.50} & 0.275 & 200 \\
+llava15-7b & gqa & otprune & 128 & 66.50 $\pm$ 6.75 & 0.330 & 200 \\
+llava15-7b & gqa & random & 64 & 67.17 $\pm$ 5.75 & 0.230 & 200 \\
+llava15-7b & gqa & random & 128 & 67.67 $\pm$ 5.92 & 0.249 & 200 \\
+llava15-7b & gqa & stride & 64 & 64.00 $\pm$ 6.75 & 0.257 & 200 \\
+llava15-7b & gqa & stride & 128 & \textbf{70.00 $\pm$ 6.50} & 0.268 & 200 \\
+llava15-7b & gqa & visionzip & 64 & 63.50 $\pm$ 6.75 & 0.256 & 200 \\
+llava15-7b & gqa & visionzip & 128 & 65.00 $\pm$ 6.50 & 0.302 & 200 \\
+llava15-7b & gqa & vispruner & 64 & 65.50 $\pm$ 6.50 & 0.254 & 200 \\
+llava15-7b & gqa & vispruner & 128 & 69.00 $\pm$ 6.50 & 0.271 & 200 \\
+llava15-7b & pope & dense & 576 & 80.50 $\pm$ 5.50 & 0.297 & 200 \\
+llava15-7b & pope & divprune & 64 & 79.50 $\pm$ 5.75 & 0.245 & 200 \\
+llava15-7b & pope & divprune & 128 & 80.00 $\pm$ 5.50 & 0.277 & 200 \\
+llava15-7b & pope & otprune & 64 & \textbf{81.50 $\pm$ 5.50} & 0.257 & 200 \\
+llava15-7b & pope & otprune & 128 & \textbf{83.50 $\pm$ 5.00} & 0.323 & 200 \\
+llava15-7b & pope & random & 64 & 77.67 $\pm$ 5.00 & 0.212 & 200 \\
+llava15-7b & pope & random & 128 & 81.67 $\pm$ 4.58 & 0.231 & 200 \\
+llava15-7b & pope & stride & 64 & 79.50 $\pm$ 5.75 & 0.244 & 200 \\
+llava15-7b & pope & stride & 128 & 83.00 $\pm$ 5.25 & 0.261 & 200 \\
+llava15-7b & pope & visionzip & 64 & 80.00 $\pm$ 5.50 & 0.239 & 200 \\
+llava15-7b & pope & visionzip & 128 & 80.50 $\pm$ 5.25 & 0.277 & 200 \\
+llava15-7b & pope & vispruner & 64 & 77.50 $\pm$ 5.75 & 0.234 & 200 \\
+llava15-7b & pope & vispruner & 128 & 82.00 $\pm$ 5.25 & 0.250 & 200 \\
+llava15-7b & scienceqa & dense & 576 & 59.00 $\pm$ 6.75 & 0.331 & 200 \\
+llava15-7b & scienceqa & divprune & 64 & \textbf{61.00 $\pm$ 6.75} & 0.165 & 200 \\
+llava15-7b & scienceqa & divprune & 128 & 57.50 $\pm$ 6.75 & 0.189 & 200 \\
+llava15-7b & scienceqa & otprune & 64 & 60.50 $\pm$ 6.75 & 0.181 & 200 \\
+llava15-7b & scienceqa & otprune & 128 & 58.50 $\pm$ 6.75 & 0.249 & 200 \\
+llava15-7b & scienceqa & random & 64 & 58.17 $\pm$ 6.33 & 0.215 & 200 \\
+llava15-7b & scienceqa & random & 128 & 56.33 $\pm$ 6.42 & 0.174 & 200 \\
+llava15-7b & scienceqa & stride & 64 & 60.00 $\pm$ 6.75 & 0.255 & 200 \\
+llava15-7b & scienceqa & stride & 128 & \textbf{60.50 $\pm$ 6.75} & 0.256 & 200 \\
+llava15-7b & scienceqa & visionzip & 64 & 58.00 $\pm$ 6.75 & 0.247 & 200 \\
+llava15-7b & scienceqa & visionzip & 128 & 56.50 $\pm$ 7.00 & 0.279 & 200 \\
+llava15-7b & scienceqa & vispruner & 64 & 59.00 $\pm$ 6.75 & 0.242 & 200 \\
+llava15-7b & scienceqa & vispruner & 128 & 59.50 $\pm$ 6.50 & 0.258 & 200 \\
+llava15-7b & textvqa & dense & 576 & 52.05 $\pm$ 6.72 & 0.449 & 200 \\
+llava15-7b & textvqa & divprune & 64 & 42.80 $\pm$ 6.62 & 0.323 & 200 \\
+llava15-7b & textvqa & divprune & 128 & 47.65 $\pm$ 6.73 & 0.373 & 200 \\
+llava15-7b & textvqa & otprune & 64 & 39.35 $\pm$ 6.58 & 0.343 & 200 \\
+llava15-7b & textvqa & otprune & 128 & 47.60 $\pm$ 6.80 & 0.403 & 200 \\
+llava15-7b & textvqa & random & 64 & 27.13 $\pm$ 5.09 & 0.296 & 200 \\
+llava15-7b & textvqa & random & 128 & 35.83 $\pm$ 5.72 & 0.324 & 200 \\
+llava15-7b & textvqa & stride & 64 & \textbf{46.70 $\pm$ 6.75} & 0.334 & 200 \\
+llava15-7b & textvqa & stride & 128 & \textbf{49.40 $\pm$ 6.75} & 0.360 & 200 \\
+llava15-7b & textvqa & visionzip & 64 & 44.20 $\pm$ 6.80 & 0.325 & 200 \\
+llava15-7b & textvqa & visionzip & 128 & 47.35 $\pm$ 6.85 & 0.377 & 200 \\
+llava15-7b & textvqa & vispruner & 64 & 45.15 $\pm$ 6.65 & 0.340 & 200 \\
+llava15-7b & textvqa & vispruner & 128 & 49.20 $\pm$ 6.73 & 0.352 & 200 \\
+\bottomrule
+\end{tabular}

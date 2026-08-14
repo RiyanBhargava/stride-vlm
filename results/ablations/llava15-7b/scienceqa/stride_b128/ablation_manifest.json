@@ -1,0 +1,67 @@
+{
+  "model": "llava15-7b",
+  "dataset": "scienceqa",
+  "method": "stride",
+  "budget": 128,
+  "max_samples": 200,
+  "max_new_tokens": 12,
+  "base_router_config": {
+    "method": "stride",
+    "budget": 64,
+    "vispruner_important_ratio": 0.5,
+    "visionzip_context_tokens": 30,
+    "otprune_gamma": 0.01,
+    "stride_concept_contrast_min": 1.0,
+    "stride_semantic_anchor_fraction": 0.0625,
+    "stride_semantic_gain_min": 0.15,
+    "stride_residual_ridge": 0.1,
+    "stride_use_semantics": true,
+    "stride_use_modality_calibration": true,
+    "stride_use_residual_space": true,
+    "stride_use_projected_geometry": true,
+    "stride_use_vision_space": true,
+    "stride_use_intent_routing": true,
+    "stride_use_diversity_expert": true,
+    "seed": 0
+  },
+  "full_reference": {
+    "predictions": "results\\main\\llava15-7b\\scienceqa\\stride_b128\\predictions.jsonl",
+    "summary": "results\\main\\llava15-7b\\scienceqa\\stride_b128\\summary.json",
+    "sha256": "76ef1c81dfbd001d1a638db520af91533b86ff5ed873a182bc7b85323b38cc5f",
+    "samples": 200,
+    "score": 0.605
+  },
+  "full_is_reused_from_main": true,
+  "variants": {
+    "no_intent_routing": {
+      "stride_use_intent_routing": false
+    },
+    "no_diversity_expert": {
+      "stride_use_diversity_expert": false
+    },
+    "no_projected_geometry": {
+      "stride_use_projected_geometry": false
+    },
+    "no_residual_space": {
+      "stride_use_residual_space": false
+    },
+    "no_vision_space": {
+      "stride_use_vision_space": false
+    },
+    "no_semantics": {
+      "stride_use_semantics": false
+    },
+    "no_modality_calibration": {
+      "stride_use_modality_calibration": false
+    }
+  },
+  "completed": [
+    "no_intent_routing",
+    "no_diversity_expert",
+    "no_projected_geometry",
+    "no_residual_space",
+    "no_vision_space",
+    "no_semantics",
+    "no_modality_calibration"
+  ]
+}

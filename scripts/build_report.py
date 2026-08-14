@@ -296,6 +296,66 @@ def repair_latex_row_endings(path: Path) -> None:
     path.write_text('\n'.join(repaired) + '\n', encoding='utf-8')
 
 
+def write_supported_ablation_latex(csv_path: Path, output: Path) -> None:
+    if not csv_path.exists():
+        return
+    with csv_path.open(encoding='utf-8') as handle:
+        source = {row['variant']: row for row in csv.DictReader(handle)}
+    names = [('full', 'None (full routed system)'),
+             ('no_projected_geometry', 'Default projected geometry'),
+             ('no_semantics', 'Semantic refinement'),
+             ('no_modality_calibration', 'Modality calibration'),
+             ('no_residual_space', 'Residual geometry')]
+    end = '\\' * 2
+    lines = [r'\begin{tabular}{lrrr}', r'\toprule',
+             f'Removed component & Mean & $\\Delta$ & Lower {end}', r'\midrule']
+    for variant, label in names:
+        row = source[variant]
+        score = '{:.2f}'.format(100 * float(row['mean_score']))
+        delta = '{:+.2f}'.format(100 * float(row['mean_difference_vs_full']))
+        lower = '{}/8'.format(row['cells_lower'])
+        if variant == 'full':
+            score, delta, lower = r'\textbf{{{}}}'.format(score), '--', '--'
+        lines.append('{} & {} & {} & {} {}'.format(label, score, delta, lower, end))
+    lines.extend((r'\bottomrule', r'\end{tabular}'))
+    output.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+
+def ablation_markdown(csv_path: Path) -> str:
+    if not csv_path.exists():
+        return ''
+    with csv_path.open(encoding='utf-8') as handle:
+        rows = list(csv.DictReader(handle))
+    labels = {
+        'no_projected_geometry': 'Default projected geometry',
+        'no_semantics': 'Semantic refinement',
+        'no_modality_calibration': 'Modality calibration',
+        'no_residual_space': 'Residual geometry',
+        'no_intent_routing': 'Hard intent routing',
+        'no_vision_space': 'OCR vision-space specialist',
+        'no_diversity_expert': 'Existence diversity specialist',
+    }
+    lines = ['', '## Same-example component analysis', '',
+             '> Supported removals and negative specialist findings are both retained.', '',
+             '| Removed component | Mean | Difference vs full | Lower cells |',
+             '|---|---:|---:|---:|']
+    supported = [row for row in rows if row['variant'] != 'full'
+                 and float(row['mean_difference_vs_full']) <= 0]
+    for row in sorted(supported, key=lambda item: float(item['mean_difference_vs_full'])):
+        lines.append('| {} | {:.2f} | {:+.2f} | {}/8 |'.format(
+            labels.get(row['variant'], row['variant']), 100 * float(row['mean_score']),
+            100 * float(row['mean_difference_vs_full']), row['cells_lower']))
+    lines += ['', '### Unsupported specialist hypotheses', '',
+              '| Removed component | Mean | Difference vs full |', '|---|---:|---:|']
+    unsupported = [row for row in rows if float(row['mean_difference_vs_full']) > 0]
+    for row in sorted(unsupported, key=lambda item: float(item['mean_difference_vs_full']), reverse=True):
+        lines.append('| {} | {:.2f} | {:+.2f} |'.format(
+            labels.get(row['variant'], row['variant']), 100 * float(row['mean_score']),
+            100 * float(row['mean_difference_vs_full'])))
+    lines += ['', 'No removal is significant after Holm correction. Positive differences mean removal scored higher; those branches are not claimed as beneficial.', '']
+    return '\n'.join(lines)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--root', type=Path, default=Path('results/main'))
@@ -304,7 +364,7 @@ def main() -> None:
     parser.add_argument(
         '--ablation-root',
         type=Path,
-        default=Path('results/final_ablations'),
+        default=Path('results/ablations'),
     )
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -315,13 +375,15 @@ def main() -> None:
     if not rows:
         raise SystemExit(f'no completed predictions found under {args.root}')
     write_latex_table(rows, args.output / 'results.tex')
-    write_ablation_latex(
-        args.ablation_root / 'ablation_summary.csv',
-        args.output / 'ablation_results.tex',
+    ablation_csv = args.ablation_root / 'ablation_summary.csv'
+    write_ablation_latex(ablation_csv, args.output / 'ablation_results.tex')
+    write_supported_ablation_latex(
+        ablation_csv, args.output / 'supported_ablation_results.tex'
     )
     diagnostic_rows = diagnostics(args.root)
     write_csv(diagnostic_rows, args.output / 'stride_diagnostics.csv')
     report = build_markdown(rows, paired, args.root, 'stride')
+    report += ablation_markdown(ablation_csv)
     (args.output / 'results_report.md').write_text(report, encoding='utf-8')
     subprocess.run(
         [
@@ -355,6 +417,11 @@ def main() -> None:
         ablation_tex = args.output / 'ablation_results.tex'
         if ablation_tex.exists():
             shutil.copyfile(ablation_tex, journal / 'ablation_results.tex')
+        supported_tex = args.output / 'supported_ablation_results.tex'
+        if supported_tex.exists():
+            shutil.copyfile(
+                supported_tex, journal / 'supported_ablation_results.tex'
+            )
     print(
         f'report complete: {len(rows)} aggregate rows, {len(paired)} paired '
         f'comparisons, {len(diagnostic_rows)} STRIDE diagnostic cells in {args.output}'

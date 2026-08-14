@@ -71,7 +71,8 @@ Every long stage displays elapsed time, processing rate, and ETA. Compatible com
 | `results/report/paired_comparisons.csv` | paired uncertainty and corrected tests |
 | `results/report/stride_diagnostics.csv` | router activation diagnostics |
 
-The `results/`, `docs/`, and `journal/` folders are intentionally local-only and excluded from Git tracking.
+The complete audited `results/` tree is versioned publicly. The `docs/` and
+`journal/` folders remain local-only and excluded from Git tracking.
 
 ## Reproducibility
 
@@ -84,3 +85,17 @@ The `results/`, `docs/`, and `journal/` folders are intentionally local-only and
 ## Claim boundary
 
 The supported claim is that STRIDE has the highest measured macro average among the declared comparison set at 64 and 128 tokens on this disjoint study. The strongest result is the 128-token accuracy-efficiency trade-off. The ablation does not support claiming that every intent-specific branch independently improves accuracy.
+
+## Novelty scope as of August 2026
+
+STRIDE does not claim to invent semantic pruning, structure--semantic staging,
+missing-evidence selection, or cross-modal residualization individually. Recent
+work such as [DIVE](https://arxiv.org/abs/2608.04496),
+[STS](https://arxiv.org/abs/2606.03569), and
+[SIEVE](https://arxiv.org/abs/2608.10489) overlaps those principles.
+
+The potentially distinct contribution is the audited interface combination of
+a shared frozen first-layer value map, robust within-image concept calibration,
+bounded answer-independent replacement, and raster-ordered emission of unchanged
+projected tokens. This is an incremental system contribution until it is tested
+faithfully against those concurrent methods on a new untouched split.

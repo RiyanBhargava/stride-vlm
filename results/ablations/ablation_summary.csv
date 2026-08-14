@@ -1,0 +1,9 @@
+variant,cells,mean_score,mean_difference_vs_full,cells_higher,cells_tied,cells_lower,significant_lower
+full,8,0.641375,0.0,0,8,0,0
+no_diversity_expert,8,0.6445,0.003125,2,6,0,0
+no_intent_routing,8,0.64725,0.005875,4,2,2,0
+no_modality_calibration,8,0.6389374999999999,-0.0024375,0,6,2,0
+no_projected_geometry,8,0.6344375,-0.0069375,0,2,6,0
+no_residual_space,8,0.64075,-0.000625,0,7,1,0
+no_semantics,8,0.6389374999999999,-0.0024375,0,6,2,0
+no_vision_space,8,0.645375,0.004,2,5,1,0

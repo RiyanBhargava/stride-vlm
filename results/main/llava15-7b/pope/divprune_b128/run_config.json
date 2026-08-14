@@ -1,0 +1,35 @@
+{
+  "git_commit": "45f74ec01cc4d63f38f26a5319605af196e95e21",
+  "git_dirty": true,
+  "router_implementation_sha256": "441c585d3f8045e31cca9277988e43a7b8a78f92dc80f43d6966a189f2fa0671",
+  "dataset": "data_final\\pope\\samples.jsonl",
+  "adapter": "LlavaAdapter",
+  "method": "divprune",
+  "budget": 128,
+  "seed": 0,
+  "max_samples": 200,
+  "sample_offset": 0,
+  "router_config": {
+    "method": "stride",
+    "budget": 128,
+    "vispruner_important_ratio": 0.5,
+    "visionzip_context_tokens": 30,
+    "otprune_gamma": 0.01,
+    "stride_concept_contrast_min": 1.0,
+    "stride_semantic_anchor_fraction": 0.0625,
+    "stride_semantic_gain_min": 0.15,
+    "stride_residual_ridge": 0.1,
+    "stride_use_semantics": true,
+    "stride_use_modality_calibration": true,
+    "stride_use_residual_space": true,
+    "stride_use_projected_geometry": true,
+    "stride_use_vision_space": true,
+    "stride_use_intent_routing": true,
+    "stride_use_diversity_expert": true,
+    "seed": 0
+  },
+  "generation_kwargs": {
+    "max_new_tokens": 12
+  },
+  "evaluation_version": "evalai-vqa-v1"
+}

@@ -10,7 +10,6 @@ data_validation/
 data_confirmation/
 data_final/
 data_holdout/
-results/
 docs/
 journal/
 checkpoints/

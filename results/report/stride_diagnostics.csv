@@ -1,0 +1,9 @@
+model,dataset,budget,samples,decoder_probe_layers_mean,anchor_tokens_mean,active_concepts_mean,distribution_coverage_mean,existence_intent_fraction,choice_intent_fraction,ocr_intent_fraction,diversity_expert_fraction,residual_space_fraction,vision_space_fraction,semantic_active_fraction,semantic_contrast_mean,semantic_anchor_tokens_mean,semantic_gain_mean,original_token_fraction
+llava15-7b,gqa,64,200,0.0,64.0,2.88,0.9172713288664818,0.47,0,0.015,0.47,0,0.015,0.475,1.5517278045415879,0.21,0.041939955353736874,1
+llava15-7b,gqa,128,200,0.0,128.0,2.88,0.9390629321336746,0.47,0,0.015,0,0,0.015,0,1.5517278045415879,0.0,0.0,1
+llava15-7b,pope,64,200,0.0,64.0,1.06,0.9385499393939972,1,0,0,1,0,0,0,1.1969620543718338,0.0,0.0,1
+llava15-7b,pope,128,200,0.0,128.0,1.06,0.9367625260353089,1,0,0,0,0,0,0,1.1969620543718338,0.0,0.0,1
+llava15-7b,scienceqa,64,200,0.0,64.0,5.745,0.9154638478159904,0,0.975,0.025,0,0.975,0.025,0,1.7717329311370849,0.0,0.0,1
+llava15-7b,scienceqa,128,200,0.0,128.0,5.745,0.948743939101696,0,0.975,0.025,0,0,0.025,0,1.7717329311370849,0.0,0.0,1
+llava15-7b,textvqa,64,200,0.0,64.0,2.05,0.8838284295797348,0.03,0,0.41,0.03,0,0.41,0.44,1.1794380891323089,0.185,0.03573746800422668,1
+llava15-7b,textvqa,128,200,0.0,128.0,2.05,0.9251282277703285,0.03,0,0.41,0,0,0.41,0,1.1794380891323089,0.0,0.0,1
