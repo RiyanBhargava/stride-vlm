@@ -380,6 +380,26 @@ def main() -> None:
     write_supported_ablation_latex(
         ablation_csv, args.output / 'supported_ablation_results.tex'
     )
+    if ablation_csv.exists():
+        with ablation_csv.open(encoding='utf-8') as handle:
+            ablation_rows = list(csv.DictReader(handle))
+        supported_rows = [
+            row for row in ablation_rows
+            if row['variant'] == 'full'
+            or float(row['mean_difference_vs_full']) <= 0
+        ]
+        unsupported_rows = [
+            row for row in ablation_rows
+            if float(row['mean_difference_vs_full']) > 0
+        ]
+        write_csv(supported_rows, args.output / 'supported_ablation_summary.csv')
+        write_csv(
+            unsupported_rows,
+            args.output / 'unsupported_specialist_summary.csv',
+        )
+        shutil.copyfile(
+            ablation_csv, args.output / 'complete_ablation_summary.csv'
+        )
     diagnostic_rows = diagnostics(args.root)
     write_csv(diagnostic_rows, args.output / 'stride_diagnostics.csv')
     report = build_markdown(rows, paired, args.root, 'stride')

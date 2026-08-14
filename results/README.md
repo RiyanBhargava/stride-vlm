@@ -11,6 +11,9 @@ This directory contains the exact final artifacts used by the STRIDE report.
 | `report/paired_comparisons.csv` | paired intervals, tests, and Holm correction |
 | `report/ablation_results.tex` | complete aggregate ablation record |
 | `report/supported_ablation_results.tex` | compact supported-core view |
+| `report/complete_ablation_summary.csv` | unfiltered aggregate ablation CSV |
+| `report/supported_ablation_summary.csv` | full system plus score-lowering removals |
+| `report/unsupported_specialist_summary.csv` | removals that scored above the full system |
 | `report/stride_diagnostics.csv` | observed branch activations |
 | `report/*.pdf` | generated accuracy/efficiency and routing figures |
 

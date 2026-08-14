@@ -1,0 +1,4 @@
+variant,cells,mean_score,mean_difference_vs_full,cells_higher,cells_tied,cells_lower,significant_lower
+no_diversity_expert,8,0.6445,0.003125,2,6,0,0
+no_intent_routing,8,0.64725,0.005875,4,2,2,0
+no_vision_space,8,0.645375,0.004,2,5,1,0
